@@ -60,7 +60,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Bem vindo ao chat avançado com a "Open ei ai"! Para interagir diga a palavra chave "pergunta", seguida de sua pergunta!';
+        const speakOutput = 'Oi, Paulo! Bem vindo ao chat avançado com a "Open ei ai"! Para interagir diga a palavra chave "pergunta", seguida de sua pergunta!';
         
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             datasource.headlineTemplateData.properties.textContent.primaryText.text = "Bem vindo ao Modo Avançado."
@@ -97,7 +97,7 @@ const AskOpenAIIntentHandler = {
         });
 
         const speakOutput = response.data.choices[0].text +
-            '.\nGostaria de perguntar mais alguma coisa?';
+            '.\nPaulo, gostaria de perguntar mais alguma coisa?';
             
         if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             
@@ -112,7 +112,7 @@ const AskOpenAIIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt("Posso ajudar com mais alguma coisa?")
+            .reprompt("Paulo, posso ajudar com mais alguma coisa?")
             .getResponse();
     }
 };
@@ -139,7 +139,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Até mais!';
+        const speakOutput = 'Até mais, meu amor!';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -157,7 +157,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Desculpe, não consegui obter uma resposta para esta pergunta. Tente perguntar de outra forma.';
+        const speakOutput = 'Entendi nada! Fala de novo com calma!';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -209,7 +209,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Desculpe, não consegui obter uma resposta. Tente de outra forma.';
+        const speakOutput = 'Entendi nada! Fala de novo com calma!';
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
